@@ -53,7 +53,13 @@ const templates = [
 
 templates.forEach(({ template, output, data }) => {
   try {
-    const html = env.render(template, data);
+    let html = env.render(template, data);
+    
+    // Fix asset paths for GitHub Pages
+    html = html.replace(/href="\/assets\//g, 'href="./public/assets/');
+    html = html.replace(/src="\/assets\//g, 'src="./public/assets/');
+    html = html.replace(/url\(\/assets\//g, 'url(./public/assets/');
+    
     fs.writeFileSync(path.join(distDir, output), html);
     console.log(`✓ Generated ${output}`);
   } catch (error) {
