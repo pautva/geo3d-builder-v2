@@ -11,11 +11,12 @@ nunjucks.configure([
   'views'
 ], {
   autoescape: true,
-  express: app
+  express: app,
+  noCache: true
 });
 
 // Set view engine
-app.set('view engine', 'njk');
+app.set('view engine', 'html');
 
 // Serve static files
 app.use('/public', express.static('public'));
