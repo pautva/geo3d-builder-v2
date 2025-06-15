@@ -40,6 +40,15 @@ const copyDir = (src, dest) => {
 // Copy public assets
 copyDir('public', path.join(distDir, 'public'));
 
+// Fix CSS asset paths
+const cssFile = path.join(distDir, 'public', 'css', 'govuk-frontend.min.css');
+if (fs.existsSync(cssFile)) {
+  let css = fs.readFileSync(cssFile, 'utf8');
+  css = css.replace(/url\(\/assets\//g, 'url(../assets/');
+  fs.writeFileSync(cssFile, css);
+  console.log('✓ Fixed CSS asset paths');
+}
+
 // Render templates
 const templates = [
   {
