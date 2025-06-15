@@ -7,10 +7,14 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "govuk-frontend": "^5.10.2"
+    "express": "^5.1.0",
+    "govuk-frontend": "^5.10.2",
+    "nunjucks": "^3.2.4"
   },
   "devDependencies": {
     "sass": "^1.89.2"
