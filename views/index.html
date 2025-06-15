@@ -1,92 +1,93 @@
 {% extends "govuk/template.njk" %}
 
-{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
-{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
-{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 {% block head %}
 <link rel="stylesheet" href="/public/css/govuk-frontend.min.css">
 {% endblock %}
 
-{% block pageTitle %}GOV.UK Frontend Kit Test{% endblock %}
+{% block pageTitle %}Model Upload Wizard{% endblock %}
 
+{% block beforeContent %}
+{{ govukBreadcrumbs({
+items: [
+{
+text: "Home",
+href: "#"
+},
+{
+text: "Model Upload Wizard"
+}
+]
+}) }}
+{% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    {{ govukBreadcrumbs({
-    items: [
-    {
-    text: "Home",
-    href: "#"
-    },
-    {
-    text: "Add Model",
-    href: "#"
-    },
-    {
-    text: "Test",
-    href: "#"
-    }
-    ]
-    }) }}
-    <h1 class="govuk-heading-xl">Geo3D Builder v2</h1>
+    <h1 class="govuk-heading-xl">3D Model Upload Wizard</h1>
 
-    {% set html %}
-    <h3 class="govuk-notification-banner__heading">
-      Training outcome recorded and trainee withdrawn
-    </h3>
-    <p class="govuk-body">Contact <a class="govuk-notification-banner__link" href="#">example@department.gov.uk</a> if
-      you think there’s a problem.</p>
-    {% endset %}
+    <h2 class="govuk-heading-l">Prepare to Share Your Geo3D Model</h2>
 
-    {{ govukNotificationBanner({
-    html: html
+    <p class="govuk-body">Welcome to the Geo3D Builder! This tool guides you through creating and publishing your
+      interactive 3D geological model.</p>
+
+    <p class="govuk-body">To upload and share your model, you'll follow these simple steps:</p>
+
+    <ol class="govuk-list govuk-list--number">
+      <li><strong>Choose Storage Location:</strong> Configure storage options.</li>
+      <li><strong>Upload 3D model:</strong> Add your 3D model data and any supporting layers.</li>
+      <li><strong>Configure:</strong> Adjust the scene's appearance, coordinate system, and user interface.</li>
+      <li><strong>Preview:</strong> Review the project.json configuration file that powers your 3D scene. This preview
+        will also display the working scene within Geo3D, served directly from your sandbox storage.</li>
+      <li><strong>Save and Publish:</strong> Save your configuration. Use Preview to see how it looks. When ready click
+        publish.</li>
+    </ol>
+
+    {{ govukInsetText({
+    text: "Your model will be reviewed before final publication."
     }) }}
 
-    {{ govukAccordion({
-    id: "accordion-default",
-    items: [
-    {
-    heading: {
-    text: "Writing well for the web"
-    },
-    content: {
-    html: "<p class='govuk-body'>This is the content for Writing well for the web.</p>"
-    }
-    },
-    {
-    heading: {
-    text: "Writing well for specialists"
-    },
-    content: {
-    html: "<p class='govuk-body'>This is the content for Writing well for specialists.</p>"
-    }
-    },
-    {
-    heading: {
-    text: "Know your audience"
-    },
-    content: {
-    html: "<p class='govuk-body'>This is the content for Know your audience.</p>"
-    }
-    },
-    {
-    heading: {
-    text: "How people read"
-    },
-    content: {
-    html: "<p class='govuk-body'>This is the content for How people read.</p>"
-    }
-    }
-    ]
-    }) }}
+    <p class="govuk-body">Click start and follow the steps on the next page to upload your model.</p>
 
-    {{ govukPanel({
-    titleText: "Application complete",
-    html: "Your reference number<br><strong>HDJ2123F</strong>"
-    }) }}
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Home",
+        href: "#",
+        classes: "govuk-button--secondary"
+      }) }}
+      
+      {{ govukButton({
+        text: "Start now",
+        href: "#",
+        isStartButton: true
+      }) }}
+    </div>
+
+
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+      <h2 class="govuk-heading-m">Help and guidance</h2>
+
+      <div style="background-color: #f3f2f1; padding: 20px; margin-bottom: 20px; text-align: center;">
+        <p class="govuk-body-s" style="margin: 0; color: #626a6e;">Placeholder image</p>
+      </div>
+
+      <nav role="navigation">
+        <ul class="govuk-list">
+          <li>
+            <a href="#" class="govuk-link">Read Manual</a>
+          </li>
+          <li>
+            <a href="#" class="govuk-link">Watch Video Guide</a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
   </div>
 </div>
 {% endblock %}

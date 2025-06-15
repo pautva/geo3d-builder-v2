@@ -24,7 +24,9 @@ app.use('/assets', express.static('public/assets'));
 
 // Routes
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', {
+    serviceName: '3D Model Upload Wizard'
+  });
 });
 
 app.listen(port, () => {
