@@ -3,6 +3,7 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
 
 {% block head %}
 <link rel="stylesheet" href="./public/css/govuk-frontend.min.css">
@@ -36,15 +37,51 @@ text: "Model Upload Wizard"
 
     <p class="govuk-body">To upload and share your model, you'll follow these simple steps:</p>
 
-    <ol class="govuk-list govuk-list--number">
-      <li><strong>Choose Storage Location:</strong> Configure storage options.</li>
-      <li><strong>Upload 3D model:</strong> Add your 3D model data and any supporting layers.</li>
-      <li><strong>Configure:</strong> Adjust the scene's appearance, coordinate system, and user interface.</li>
-      <li><strong>Preview:</strong> Review the project.json configuration file that powers your 3D scene. This preview
-        will also display the working scene within Geo3D, served directly from your sandbox storage.</li>
-      <li><strong>Save and Publish:</strong> Save your configuration. Use Preview to see how it looks. When ready click
-        publish.</li>
-    </ol>
+    {{ govukAccordion({
+      id: "model-upload-steps",
+      items: [
+        {
+          heading: {
+            text: "Step 1: Choose Storage Location"
+          },
+          content: {
+            html: "<p class='govuk-body'>Configure storage options for your 3D model and associated files. You'll select where your model data will be stored and accessed from.</p>"
+          }
+        },
+        {
+          heading: {
+            text: "Step 2: Upload 3D Model"
+          },
+          content: {
+            html: "<p class='govuk-body'>Add your 3D model data and any supporting layers. This includes your main geological model files and any additional data layers that enhance the visualization.</p>"
+          }
+        },
+        {
+          heading: {
+            text: "Step 3: Configure"
+          },
+          content: {
+            html: "<p class='govuk-body'>Adjust the scene's appearance, coordinate system, and user interface. Customize how your model will be displayed and how users can interact with it.</p>"
+          }
+        },
+        {
+          heading: {
+            text: "Step 4: Preview"
+          },
+          content: {
+            html: "<p class='govuk-body'>Review the project.json configuration file that powers your 3D scene. This preview will also display the working scene within Geo3D, served directly from your sandbox storage.</p>"
+          }
+        },
+        {
+          heading: {
+            text: "Step 5: Save and Publish"
+          },
+          content: {
+            html: "<p class='govuk-body'>Save your configuration and use Preview to see how it looks. When you're satisfied with the result, click publish to make your 3D geological model available to others.</p>"
+          }
+        }
+      ]
+    }) }}
 
     {{ govukInsetText({
     text: "Your model will be reviewed before final publication."
